@@ -1,0 +1,21 @@
+# pasta curve p
+p = 0x40000000000000000000000000000000224698fc094cf91b992d30ed00000001
+f = GF(p)
+# order n curve
+b = 0x34524F71A21A7096C6AD51A6A7FE7A43D76D8E4277CB9048EDC87AB655E55142
+e = EllipticCurve(f, [1, b])
+# order n multiplicative group generator
+g = e([8457592467189961472088294193395436206598213600319363367375202886764306672454, 6260912978736263025923836161014380758663699521220930952698415358813682414630, 1])
+r = e([667847935574799763262474541037789578642554971169102853225843082319184593283, 9129576808731802323581070899628928110781417428835472755319810417567769223932, 1])
+
+def get_isogeny(g, r, n, e):
+  h = [r + i*g for i in range(n)]
+  l = [elm.xy()[0] for elm in h]
+  for phi in e.isogenies_prime_degree(2):
+    if len(set([phi(elm) for elm in h])) == len(h)//2:
+      psi = phi.x_rational_map()
+      u, v = psi.numerator(), psi.denominator()
+      print(u, v)
+
+n = 2^12
+get_isogeny(g, r, n, e)
