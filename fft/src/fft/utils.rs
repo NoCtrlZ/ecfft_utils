@@ -1,5 +1,4 @@
-pub use ff::Field;
-pub use pasta_curves::{arithmetic::*, Fp};
+use pasta_curves::arithmetic::*;
 
 pub(crate) fn swap_bit_reverse<G: Group>(a: &mut [G], n: usize, k: u32) {
     assert!(k <= 64);
