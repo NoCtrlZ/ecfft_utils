@@ -1,5 +1,7 @@
 mod fft;
 
+pub use fft::Fft;
+
 #[cfg(test)]
 mod tests {
     #[test]
