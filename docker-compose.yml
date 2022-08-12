@@ -1,9 +1,9 @@
 version: '3'
 services:
-    params:
-      build: params
-      container_name: params
+    scripts:
+      build: scripts
+      container_name: scripts
       tty: true
       stdin_open: true
       volumes:
-        - ./params:/app
+        - ./scripts:/app
